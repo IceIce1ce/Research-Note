@@ -1,0 +1,16 @@
+<h2>1. Abstract</h2>
+Introduce a multi-branch model that is equipped with a trainable preprocessing step and multiple identical branches for detecting anomalies during day and night as well as in sunny and rainy conditions.
+<h2>2. Methods</h2>
+Given an input sequence of camera frames, we first estimate their corresponding backgrounds with a shallow background learning module. These estimations are then subtracted from the input frames to highlight the foregrounds. Then use multiple branches in our model to encode the remaining foreground. Each branch can specialize in different situations. Interpolate between these branches to get a prediction for the future. The anomaly score is then calculated based on the difference between the actual observation and the predictions.
+<h3>2.1 Background prediction</h3>
+Add $N$ trainable tensors to the model’s parameters, each with the same dimensions as the input frame. Initialize them with zero values. Also add a small convolutional neural network to the model. This network consists of four convolutional blocks, two fully connected layers, and a softmax layer. This model predicts the $N$ weights that are used to combine the background bases through a weighted sum to obtain the background for the current frame. The predicted background is then subtracted from the frame. Given an input frame, use the small neural network to predict two scalar values ($\alpha_0, \alpha_1$). Then estimate the current background as the weighted sum of the two background bases, weighted by ($\alpha_0, \alpha_1$).
+<h3>2.2 Multiple branches</h3>
+Use DAML which consists of an encoder, a motion model, and a decoder. DAML first uses an encoder to extract latent codes (features) from individual input frames. These latent codes are then passed to a motion model that contains several 3D convolutional layers to predict the latent code of a future frame. A decoder is used during training to generate frames based on the combined latent codes. At test time, the decoder is discarded and anomalies are detected by calculating the difference between observed and predicted latent codes. Given a preprocessed input video sequence, extract latent codes from each of the encoders, which are then used for the prediction of the latent code of a future frame and for the reconstruction of the input video sequence. Feed the weighted latent codes to the decoder for reconstructing the inputs.
+<h3>2.3 Training</h3>
+Pass $k = 6$ frames through the background selection model to obtain $k$ backgrounds and subtract these from the frames to obtain the foreground frames $f$. Predict the $B$ branch activation values. Each foreground frame is passed through each encoder to obtain $B$ latent codes each. The latent codes are then combined as a weighted sum using the branch activations. The averaged latent code is passed through the decoder to obtain a reconstructed foreground $\hat{f}$. $BG = \sum_{i = 1}^N\alpha_i * BG_i, \mathcal{L}_{BG} = MSE(BG, I), \mathcal{L} = sum_{i = 1}^k||\hat{f}_i - f_i||_2 + \sum_{b = 1}^B\alpha_b||\hat{z}_{k + n} - z_{k + n}||_2$
+<h2>3. Datasets</h2>
+Generate a synthetic data set that simulates different conditions by augmenting the CUHK Avenue data set.
+<h2>4. Metrics</h2>
+AUC.
+<h2>5. Code</h2>
+https://github.com/lyn1874/mbnn_ad.

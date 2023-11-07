@@ -1,0 +1,8 @@
+<h2>1. Abstract</h2>
+This paper will review various method used to increase the performance of a deep learning based action recognition on videos. To capture temporal information effectively the model need to be able to use multimodalities to detect motion, incorporating long-range temporal structure, and numerous deep learning architectures with various characteristics.
+<h2>2. Introduction</h2>
+Current research focus is increasing the accuracy of previous research using segment-based sampling to detect long range temporal structure efficiently, techniques to automate dataset annotation, various modalities as inputs to incorporate both temporal and spatial features of the video, and finding the best architecture with lowest computation needed.
+<h2>3. Architectures</h2>
+Main differences in recent development of video-based deep learning network are the myriad of techniques to include temporal motion to help recognize an action; whether using recurrent layers to propagate information across time, using convolution layers with additional temporal dimension, or using motion-based flow as input to the network.
+<h2>4. Future works</h2>
+The future scope of research of anomaly detection on real-world problems (surveillance videos) is focused on finding an accurate algorithm and able to generate prediction using realtime data. This will be achieved by focusing research on generating more training data (pretraining, unsupervised training), exploring modalities to capture more data (temporal flow, RGB differences), different method sampling to capture anomaly events, and exploring various deep learning architecture architectures.

@@ -1,0 +1,24 @@
+<h2>1. Abstract</h2>
+Propose a causal graph to analyze the confounding effect of the pseudo label generation process. Then, we introduce a simple yet effective causal inference based framework to disentangle the noisy pseudo label’s impact. Finally, we perform counterfactual based model ensemble that blends long-range temporal context with local image context in inference to make final anomaly detection.
+<h2>2. Method</h2>
+<h3>2.1 Problem formulation</h3>
+Define the overall noisy pseudo label set as $L = A \cup N = \{l_i|l_i = c, c \in \mathcal{C} = \{0, 1\}\}^K_{i = 1}$, where pseudo anomaly label set to $A$ and pseudo normal label set to $N$. $\mathcal{C}$ represents the label set, 0 for normal event and 1 for abnormal event. Formulate the UVAD task as: $\mathcal{F} = argmin\sum_{I \in \mathbb{I}}\mathcal{L}_{foc}(\hat{y} = \phi(m = \varphi(x = f(I))), l)$, where $\mathcal{L}_{foc}(\hat{y}, l) = \alpha_1l(1 - \sigma(\hat{y}))^2\log\sigma(\hat{y}) + \alpha_2(1 - l)\sigma(\hat{y})^2\log(1 - \sigma(\hat{y}))$.
+- Round 0: Use ResNet-50 to extract $X$. Then, an unsupervised algorithm is adopted to perform initial pseudo labels generation for $L_0$. Isolation forest algorithm is adopted. Given a random subset $R \subset X$ and $x \in R$, the anomaly score of $x$ is: $z = PCA(x), score(z) = 2^{-\frac{E(h(z))}{\tau(|R|)}}, \tau(n) = 2Har(n - 1) - (2(n - 1)/n)$, where $h(z)$ represents path length of $z$ that is measured by number of edges it traverses an isolation tree from the root to a leaf node by $z$. $E(h(z))$ is the average of $h(z)$ from a collection of isolation trees. $|R|$ denotes total samples in $R$. $Har(\cdot)$ is the harmonic number. $\tau(\cdot)$ is a normalization term.
+- Round 1: Obtain $\mathcal{F}_1$ from $L_0$. Then, re-sample pseudo label set $L_1$ with $\mathcal{F}_1$.
+- Round 2 to T: new pseudo label set $L_t$ generated with trained $F_t$ is used to train a new $F_{t + 1}$. This process is iterated for T rounds until the performance plateaus.
+<h3>2.2 A causal inference look at UVAD</h3>
+It contains two parts: (1) the pseudo label generation part via Link E -> S -> L, (2) the model training part via Link E -> X denoting $x = f(I)$, Link X -> M -> Y denoting $\hat{y} = \phi(m = \varphi(x = f(I)))$, and Link L -> M <- X denoting $\mathcal{L}_{foc}(\hat{y}, l)$. Besides, Link X -> Y is direct causal effect between $X$ and $Y$ which we aim to achieve.
+<h3>2.3 De-confounded training with causal intervention</h3>
+Define learned model with $P(Y|do(X), M)$ as $\mathcal{F}^*$ and the implementation of $P(Y|do(X), M)$ is: $P(Y = c|do(X = x), M = m) = \mathbb{E}_s[\sigma(\mathcal{F}^*(x, m, s))] \approx \sigma(\mathbb{E}_s[\mathcal{F}^*(x, m, s)])$, where $\mathcal{F}^*$ outputs the unbiased prediction logit of $x$ for class $c$.
+<h3>2.4 Counterfactual based long-range temporal context</h3>
+Normalize the prediction logits from $\mathcal{F}^*$ for normal prediction and long-range prediction before summing up them together for model ensemble. The final anomaly prediction score $O(\cdot)$ for class $c$ is: $O(Y = c) = \sigma(Norm(\mathbb{E}_s[\mathcal{F}^*(x, m, s))] + Norm(\mathbb{E}_s[\mathcal{F}^*(x_a, m, s)]))$, where $x_a = (\sum_{i = -d}^dx_i)/2d$ is the mean feature a sliding window centered at $x$ with window size $d$, $Norm(logit) = (logit - \mu)/\delta$, where $\mu$ is the mean value of all logits of all frames and $\delta$ is the standard deviation of all logits of all frames.
+<h3>2.5 Overall formulation</h3>
+argmax$_{c \in \mathcal{C}}O(Y = c)$.
+<h3>2.6 De-confounded training</h3>
+Stratification of $S$ as $S = \{s_i\}^{N_s}_{i = 1}$, where $s_i \in \mathbb{R}^{D_b}$ and $N_s$ is a hyperparameter representing the size of the confounder set $S$. Utilize K-Means with $PCA(\cdot)$ to learn confounder set $S$. $P(Y|do(X)) = \sum_sP(Y|X = x, M = m, S = s)P(s) \approx P(Y|X, m = \sum_sg(x = f(I), s)P(s))$, where the approximation is achieved by the Normalized Weighted Geometric Mean. $g(\cdot)$ is defined as: $m = g(x, S)P(S) = \sum_sg(x, s)P(s) = softmax(\frac{(W_1x)^T(W_2S)}{\sqrt{D_h}})S$, where $P(s_i) = \frac{|s_i|}{\sum_j|s_j|}$ and $|s_i|$ is the number of samples in cluster $s_i$. $W_1, W_2 \in \mathbb{R}^{D_h \times D_b}$ are learnable parameters to project $x$ and $s_i$ into a joint space. $\sqrt{D_h}$ is a constant scaling factor for feature normalization. Set $M = m^\oplus$, where $m^\oplus = concat(x, m)$. Finally, the model $\mathcal{F}^*$ is trained with $\mathcal{L}_{foc}$.
+<h3>2.7 Counterfactual temporal context ensemble</h3>
+$O(Y = c) = \sigma(Norm(\mathbb{E}_s[\mathcal{F}^*(x, m^\oplus, s))] + Norm(\mathbb{E}_s[\mathcal{F}^*(x_a, m^\oplus_a, s)]))$.
+<h2>3. Datasets</h2>
+UCSD, Subway, UMN and Avenue.
+<h2>4. Metrics</h2>
+AUC.

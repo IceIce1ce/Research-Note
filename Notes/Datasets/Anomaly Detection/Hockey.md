@@ -1,0 +1,2 @@
+<h2>1. Introduction</h2>
+It is collected of hockey games and scenes from action movies to describe the violent behaviors in ice hockey matches. Each clip consisting of 50 frames is manually labeled as fight or non-fight. This dataset is built by collecting 1000 clips of action from hockey games. Each clip consists of 50 frames of 720 $\times$ 576 pixels. 

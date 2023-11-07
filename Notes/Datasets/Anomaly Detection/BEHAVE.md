@@ -1,0 +1,33 @@
+<h2>1. Introduction</h2>
+It focuses on aberrant behavior associated with criminal activity. It has around 90000 frames of humans identified by bounding boxes with interacting groups classified into one of 6 different behaviors. It consists of 4 video clips (76800 individual frames). The video and images were recorded at 25 FPS with resolution 640 $\times$ 480. Each interacting person has a bounding box. Altogether, 125 instances of people were marked up for a total of 83545 bounding boxes. The BEHAVE ground truth was constructed using Viper-GT grounding-truthing tool which encodes target positions in an XML variant.
+<h2>2. Summary</h2>
+- InGroup: 
+	- Instances: 35.
+	- Frames: 14683.
+- Approach: 
+	- Instances: 25.
+	- Frames: 2272.
+- WalkTogether: 
+	- Instances: 43.
+	- Frames: 6694.
+- Meet: 
+	- Instances: 1.
+	- Frames: 27.
+- Split: 
+	- Instances: 23.
+	- Frames: 2529.
+- Ignore: 
+	- Instances: 2.
+	- Frames: 597.
+- Chase: 
+	- Instances: 10.
+	- Frames: 216.
+- Fight: 
+	- Instances: 19.
+	- Frames: 1751.
+- RunTogether: 
+	- Instances: 4.
+	- Frames: 335.
+- Following: 
+	- Instances: 1.
+	- Frames: 92.

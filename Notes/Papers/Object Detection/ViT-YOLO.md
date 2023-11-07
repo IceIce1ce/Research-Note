@@ -1,0 +1,14 @@
+<h2>1. Abstract</h2>
+An improved backbone MHSA-Darknet is designed to retain sufficient global context information. and extract more differentiated features fro object detection via multi-head self-attention. Regarding the path-aggregation neck, present a simple yet highly effective weighted bi-directional feature pyramid network (BiFPN) for effectively cross-scale feature fusion.
+<h2>2. Introduction</h2>
+The framework integrates CSP-Darknet and multi-head self-attention for feature extraction. In addition, the architecture interfaces with BiFPN for effectively combining the features at different scales. Subsequently, the YOLOv3 coupled head is employed for final bounding boxes classification and regression tasks.
+<h2>3. Proposed method</h2>
+ViT-YOLO uses both convolution and self-attention which is mainly based on YOLOv4-P7. For the first part, use MHSA-Darknet as the backbone which integrates multi-head self-attention into original CSP-Darknet to extract more differentiated features. The second processing component BiFPN in substitution for PANet aims to aggregate features from different backbone levels for different detector levels. For the third part, the general YOLO detection heads are employed for predicting boxes at 5 different scales.
+<h3>3.1 MHSA-Darknet</h3>
+It embed the multi-head self-attention (MHSA) layers into the top CSPDark block to implement global (all2all) self-attention over a 2D feature map. To handle 2D images, flatten spatial dimensions of 2D feature map $x \in \mathbb{R}^{H \times W \times d}$ into a sequence $x_p \in \mathbb{R}^{(H * W) \times d}$, where $(H, W)$ is the resolution of original feature map, $d$ is the number of channels and $H * W$ serves as the effective input sequence length for transformer layer. Use standard learnable 1D position embeddings with a linear layer to retain positional information.
+<h3>3.2 BiFPN</h3>
+First, BiFPN adds an extra edge from original input to output node if they are at same level in order to fuse more features without adding much cost. Second, while combining low-level and high-level features, BiFPN introduces learnable weights to learn importance of different input features instead of simply summing up or concatenating which may cause feature mismatch and performance degradation. Formally, given a list of multi-scale features $\overrightarrow{P}^{in} = (P^{in}_{l_1}, P^{in}_{l_2},...)$ where $P^{in}_{l_i}$ presents feature at level $l_i$. The list of intermediate feature on the pathway is represented as $overrightarrow{P}^{td} = (P^{td}_{l_1}, P^{td}_{l_2},...)$ The goal is to find a transformation $f$ that can effectively aggregate different features and output a list of new features: $\overrightarrow{P}^{out} = f(\overrightarrow{P}^{in})$. 
+<h2>4. Datasets</h2>
+VisDrone2019-Det.
+<h2>5. Metrics</h2>
+AP, AP50, AP75, AR1, AR10, AR100 and AR500. 

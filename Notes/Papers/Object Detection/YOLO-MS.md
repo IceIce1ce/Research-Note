@@ -1,0 +1,15 @@
+<h2>1. Introduction</h2>
+From a local view, design a MS-Block with a simple yet effective hierarchical feature fusion strategy. Inspired by Res2Net, introduce multiple branches in MS-Block to perform feature extraction, but differently, use an inverted bottleneck block with depth-wise convolution to enable the efficient use of large kernels. From a global view, increasing the kernel size of convolutions as the network goes deeper. Using small kernel convolutions in shallow layers to process the high-resolution features more efficiently. On the other hand, adopting large kernel convolutions in deep layers to capture wide-range information.
+<h2>2. Method</h2>
+<h3>2. 1 Multi-scale building block design</h3>
+Propose a novel block with a hierarchical feature fusion strategy, dubbed MS-Block, to enhance the capability of real-time object detectors in extracting multi-scale features. Suppose $X \in R^{H \times W \times C}$ refers to the input feature. After the transition via a 1 $\times$ 1 convolution, the channel dimension of $X$ is increased to $n \times C$. Then, split $X$ into $n$ distinct groups, denoted as ${X_i}$ where $i \in 1, 2, 3,...,n$. To lower the computational cost, choose $n$ to be 3. Apart from $X_1$, each other group goes through an inverted bottleneck later, denoted by $IB_{k \times k}(\cdot)$. where $k$ is kernel size, to attain $Y_i$. $Y_i = X_i$ if $i = 1$ and $IB_{k \times k}(Y_{i - 1} + X_i)$ if $i > 1$. Not connect the inverted bottleneck layer to $X_1$, allowing it to act as a cross-stage connection and retain information from the previous layers. Finally, concatenate all splits and apply a $1 \times 1$ convolution to conduct an interaction among all splits, each of which encodes features at different scales.
+<h3>2.2 Heterogeneous kernel selection protocol</h3>
+Propose to leverage heterogeneous convolutions in different stages to assist in capturing richer multi-scale features. Leverage the smallest-kernel convolution in the first stage of the encoder while the largest-kernel convolution is in the last stage. Subsequently, increase the kernel size for the middle stages, aligning it with the increment of feature resolution. This strategy allows for extracting both fine-grained and coarse-grained semantic information. Assign values of $k$ to 3, 5, 7 and 9 from the shallow stage to the deep stage in the encoder.
+<h3>2.3 Architecture</h3>
+Backbone consists of 4 stages, each of which is followed by a $3 \times 3$ convolution with stride 2 for downsampling. Add an SPP block after third stage. Use PAFPN as neck. Basic building blocks used in the neck are also our MS-Block, in which $3 \times 3$ depth-wise convolutions are used for fast inference. To achieve a better trade-off between speed and accuracy, halve the channel depth of multi-level features from the backbone.
+<h2>3. Datasets</h2>
+MS COCO.
+<h2>4. Metrics</h2>
+AP, AP$_{50}$, AP$_{75}$, AP$_{s}$, AP$_{m}$ and AP$_{l}$. 
+<h2>5. Code</h2>
+https://github.com/fishandwasabi/yolo-ms.

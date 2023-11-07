@@ -1,0 +1,14 @@
+<h2>1. Abstract</h2>
+Propose a new approach to asses the performance of video anomaly detection algorithms. Propose a quartile based quality assessment of video anomaly detection to have a detailed breakdown of algorithm performance. The proposed assessment divides the detection into 5 categories based on the measurement quartiles of the position, scale and motion magnitude of anomalies. A weighted precision is introduced in the average precision calculation such that the frame-level average precision reported in categories can be compared to each other regardless of the baseline of precision-recall curve in every category.
+<h2>2. Datasets</h2>
+UCSD, ShanghaiTech, Street Scene, Live Video and UCF Crime.
+<h2>3. Evaluation methods</h2>
+One-class neural networks method, AE reconstruction method and MIL method. All three methods take features extracted from a C3D network pretrained on Sports-1M. For each video, resize every video frame to 112 $\times$ 112 pixels and compute C3D features for non-overlapping 16-frame clips from the video.
+<h2>4. Assessment</h2>
+The anomalies in every dataset is measured in terms of their positions, scales and motion magnitudes. The LF is calculated as $Q_1 - 1.5 \times IQR$ and the UF is calculated as $Q_3 + 1.5 \times IQR$. The cut points $Q_1, Q_3, LF$ and $UF$ divide the anomalies into five categories $(-\infty, LF), [LF, Q_1], [Q_1, Q_3], [Q_3, UF]$ and $[UF, +\infty]$ --> tiny, small, medium, large and huge. Propose a weighted precision in the AP computation, where the precision is calculated as $tp/(tp + fp \times p_1)$ where $p_1$ is the percentage of anomalies in each categories.
+<h3>4.1 Position</h3>
+The position measures how close an anomaly bounding box is to the image borders and whether different positions of the anomalies make any difference in the detection. Given the center of a bounding box $x, y$ and the image width $w$ and height $h$, the position is calculated as the lowest value among the $x/w, y/h, (w - x)/w$ and $(h - y)/h$.
+<h3>4.2 Scale</h3>
+The scale measures the relative size of an anomaly in a frame. Given an anomaly, the scale is calculated as the ratio of the size of the bounding box to the size of the frame.
+<h3>4.3 Motion magnitude</h3>
+The motion magnitude is calculated as the average magnitude of the optical flow inside an anomaly bounding box. Video frames in all datasets are resized to size 112 $\times$ 112 and smoothed by a Gaussian filter kernel size 7 $\times$ 7 before computing the optical flow. The pyramid scale is 0.5 and the pyramid levels is 3. The algorithm runs 3 iterations at each pyramid level with a window size of 10. The size of the pixel neighborhood for polynomial expansion in the algorithm and the standard deviation for smooth derivatives are 5 and 1.2.

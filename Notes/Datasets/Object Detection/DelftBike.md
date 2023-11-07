@@ -1,0 +1,4 @@
+- The dataset includes 8000 bike images for training and 2000 bike images for testing. In each image, 22 different bike parts are annotated with bounding box, class and object state labels, but some parts may be missing.
+- Four states of each part: intact, damaged, absent and occluded. Following the part state distribution of the paper, it has 60.5% intact, 19.5% absent, 14% occluded and 6% damaged. The front pedal, dress guard, chain and back light have the highest number of intact, absent, occluded and damaged part states.
+- The four part states are grouped in two categories: 1) missing parts consist of absent and occluded and 2) present parts: intact and damaged. In training process, only present states are used.
+- The dataset contains different object sizes and contextual and location biases that can cause false positive detections. Moreover, some of the object boxes are noisy which challenge to detect object parts.

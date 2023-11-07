@@ -1,0 +1,6 @@
+<h2>1. Introduction</h2>
+LAD contains 2000 video sequences and 1895 scenes, including normal and abnormal video clips with 14 anomaly categories including crash, fire, violence, etc. with large scene varieties. It provides the annotation data, including video-level labels (abnormal/normal video, anomaly type) and frame-level labels (abnormal/normal video frame) to facilitate anomaly detection. More than 100 video sequences are collected for each abnormal category, making it the largest database for anomaly detection. The frame rate of all video sequences is 25 fps. 
+<h2>2. Summary</h2>
+14 categories: crash, crowd, destroy, drop, falling, fighting, fire, fall into water, hurt, loitering, panic, thiefing, trampled, and violence. For each category, discard some video sequences which fall into any of the following two conditions: (1) low resolution or low quality; and (2) incomplete anomaly event or anomaly is not clear.
+<h2>3. Code</h2>
+https://github.com/wanboyang/anomaly_detection_LAD2000.

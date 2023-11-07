@@ -1,0 +1,1 @@
+This dataset is recorded in the parking lot of a University campus for anomaly detection. Two videos that contain group activities have specifically selected. Videos include people walking around the parking lot in groups. There are two types of abnormality: 1) people fighting and 2) cars coming to/going out of the parking lot. 

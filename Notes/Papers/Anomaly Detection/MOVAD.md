@@ -1,0 +1,16 @@
+<h2>1. Abstract</h2>
+MOVAD only exploits videos captured by a dash-mounted camera. It relies on two main modules: a short-term memory to extract information related to the ongoing action, implemented by a video swin transformer, and a long-term memory module that considers also remote past information thanks to the use of a LSTM network. Its AUC score is 82.11%.
+<h2>2. Introduction and Related works</h2>
+Anomalous situation detection in real traffic scenarios is challenging due to some reasons: 1) it requires real-time performance, 2) miss a formal shared model of what an anomaly should be because many times the riskness is highly subjective, 3) there are plenty of possible accident classes to take into account compared to normal traffic situations and the number of available examples for some of them are very exiguous and 4) the definition of precise time boundaries of an anomaly is more subjective and doubtful. Two main architectural contributions: 1) exploit a video swin transformer, adapted to model a short-term memory in a real-time and online scenario. This adaption replies only on the current and few previous frames, 2) injection of a LSTM module inside the classification Head to model the long-term memory of the past.
+<h2>3. Memory-augmented online vad</h2>
+MOVAD is composed by a short-term memory module and a classification Head that includes a long-term memory module. Recently observed frames have been taken into account as a source of information related to the ongoing action and past frames to take into account the context.
+<h3>3.1 Short-term memory module</h3>
+It considers only a small temporal window of $NF$ frames of the video, going from the current frame at time $t$ to the previous frame at time $t - (NF - 1)$. VST takes as input a video with size $NF \times H \times W \times 3$, where $NF$ (= 4), $H$ and $W$ correspond to the number of frames, height, width and RGB channels. The model splits the frames in non-overlapping 3D patches, partitioning the video in $\frac{NF}{2} \times \frac{H}{4} \times \frac{W}{4}$ 3D tokens, projecting the features to an arbitrary dimension C. The rest of VST is similar to swin transformer with four stages of video swin transformer blocks, interspersed with 2 $\times$ spatial down-sampling in the patch merging layer.
+<h3>3.2 Long-term memory module</h3>
+The output of VST goes through adaptive average pool 3D layer and finally, enters inside the classification Head. The Head is composed by a series of normalization layers, linear layers and dropout. LSTM module is composed by three cells, stacked together to form a stacked LSTM. The state, composed by three hidden states $h[t]$ and three cell states $c[t]$, is updated whenever a new frame is available. LSTM receives an input a features block of $[B, 1024]$, where $B$ is the batch size, and return a block of same size together with the state of the cells. For each frame $f[t]$, the model outputs the anomaly classification score $s[t] \in [0, 1]$, where 0 is no anomaly and otherwise. Finally, a weighted cross-entropy loss was chosen to train the model, giving higher weight to the anomaly class.
+<h2>4. Datasets</h2>
+DoTA.
+<h2>5. Metrics</h2>
+AUC.
+<h2>6. Code</h2>
+https://github.com/hachreak/movad.

@@ -1,0 +1,17 @@
+<h2>1. Abstract</h2>
+Propose a novel and robust unsupervised video anomaly detection method by frame prediction with proper design which is more in line with the characteristics of surveillance videos. The proposed method is equipped with a multi-path ConvGRU-based frame prediction network. A noise tolerance loss is introduced during training to mitigate the interference caused by background noise.
+<h2>2. Methodology</h2>
+<h3>2.1 Encoder</h3>
+The encoder is composed of several basic residual blocks with 2D convolutions and extracts multiscale spatial features from the input frame. Residual blocks remove all batch normalization layers. This modification keeps the flow of the extracted spatial information through the encoder.
+<h3>2.2 Predictor</h3>
+The predictor is equipped with $L$ = 3 parallel prediction modules (paths). Each prediction module consists of a non-local block and ConvGRUs.
+<h3>2.3 Decoder</h3>
+The decoder fuses features at different scales from different predictor modules one after another by constructing the output frame using upsampling and channel concatenation operations. Similar to those in the encoder, no residual blocks in the decoder have batch normalization layers. Predict the next video frame at time $t$ based on its $P$ previous frames by three steps. First, from each frame $I_{t'}$ where $t' = t - P,...,t - 1$, the encoder produces $L$ different states: $(z^{[1]}_{t'},...,z^{[L]}_{t'}) = f_{enc}(I_{t'})$. Second, each module of the predictor makes its own prediction based on the corresponding outputs from the $P$ encoders: $h^{[l]}_t = f^{[l]}_{pre}(z^{[l]}_{t - P}, z^{[l]}_{t - 1})$, where $l = 1,...,L$. Finally, the decoder obtains the prediction by $\hat{I}_t = f_{dec}(h^{[1]}_t,...,h^{[L]}_t)$.
+<h3>2.4 Noise tolerance loss</h3>
+In order to apply the noise tolerance loss, when training the prediction network, feed the predicted and ground truth frame into the loss network and then calculate the loss based on the hidden layer outputs. Use VGG16 network trained on ImageNet as the loss network, and its intermediate outputs carry much semantic information while filtering out irrelevant noise. Given $V = \{2, 4, 7, 10, 13\}$, the noise tolerance loss is defined by $L_{nt}(I_t, \hat{I}_t) = \sum_{v \in V}\alpha_v||f_{nt}^{[v]}(I_t) - f^{[v]}_{nt}(\hat{I}_t)||_1$, where $f^{[v]}_{nt}(\cdot)$ denotes the output from $v$-th layer of loss network.
+<h3>2.5 Training frame predictor</h3>
+The intensity loss is defined: $\mathcal{L}_{int}(I_t, \hat{I}_t) = \sum_{i, j}||I_t(i, j) - \hat{I}_t(i, j)||_2$, where $1 \leq i \leq H$ and $1 \leq j \leq W$. $I_t(i, j)$ and $\hat{I}_t(i, j)$ denotes RGB values of $(i, j)$-th pixel in $I_t$ and $\hat{I}_t$. The gradient differences are defined by: $\Delta_{gd}^{[i]}(I, i, j) = |I(i, j) - I(i - 1, j)|, \Delta_{gd}^{[j]}(I, i, j) = |I(i, j) - I(i, j - 1)|$ and the gradient difference loss is calculated by: $\mathcal{L}_{gd}(I_t, \hat{I}_t) = \sum_{i, j}||\Delta^{[i]}_{gd}(I_t, i, j) - \Delta_{gd}^{[i]}(\hat{I}_t, i, j)||_1 + \sum_{i, j}||\Delta^{[j]}_{gd}(I_t, i, j) - \Delta_{gd}^{[j]}(\hat{I}_t, i, j)||_1$. $\mathcal{L}(I_t, \hat{I}_t) = \lambda_{int}\mathcal{L}_{int}(I_t, \hat{I}_t) + \lambda_{gd}\mathcal{L}_{gd}(I_t, \hat{I}_t) + \lambda_{nt}\mathcal{L}_{nt}(I_t, \hat{I}_t)$. 
+<h2>3. Datasets</h2>
+Avenue, ShanghaiTech, Ped1/2.
+<h2>4. Metrics</h2>
+AUROC and AUPRC.

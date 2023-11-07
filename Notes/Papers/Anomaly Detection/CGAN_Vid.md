@@ -1,0 +1,17 @@
+<h2>1. Abstract</h2>
+Propose a flexible multi-channel framework to generate multi-type frame-level features. The multi-channel framework is based on four Conditional GANs (CGANs) taking various type of appearance and motion information as input and producing prediction information as output. Then, the difference between those generative and ground-truth information is encoded by PSNR. The binary Support Vector Machine (SVM) is applied for frame-level anomaly detection. Finally, Mask R-CNN is used to perform object-centric anomaly localization.
+<h2>2. Proposed method</h2>
+<h3>2.1 Multi-channel pix2pix-CGAN framework</h3>
+Combines 4 parallel streams containing 9 channels corresponding to the same pix2pix-CGANs.
+- Pix2pix-CGAN: contains 8 blocks encode–decode U-Net with skipped connections for the Generator, and 4 blocks for the Discriminator. Let Ck, CEk and CDk denote a Discriminator block, an Encoder block, and a Decoder block with k filters. The model architecture is defined as:
+	- Encoder: CE64-CE128-CE256-CE512-CE512-CE512-CE512-CE512.
+	- Decoder: CD512-CD512-CD512-CD512-CD512-CD256-CD128-CD64.
+	- Discriminator: C64-C128-C256-C512.
+	Only the last CE512 block does not have a BatchNorm layer. All convolutional layers of Encoder are applied 4 $\times$ 4 filters with stride 2 for downsampling the input source image to the bottleneck layer. Then, Decoder uses transpose convolutional layers for upsampling from the bottleneck output size to the predicted output size. The skip connections are also used between the layers of encode–decode corresponding to the same size of feature maps. L1 loss is applied to measure the distance between target image $I_t$ and generated image $I_g$ from source image I: $\mathcal{L} = E_g||I_t - I_g||_1$. The adversarial loss of Discriminator $\mathcal{D}$ is calculated by Conditional GAN strategy: $\mathcal{L}_D = E_t \log \mathcal{D}(I_t|I) + E_g \log (1 - \mathcal{D}(I_g|I))$, where $\mathcal{D}(I_t|I)$ is the discriminator’s estimate of the probability that target image $I_t$ is real w.r.t input image $I$ and $\mathcal{D}(I_g|I)$ is the discriminator’s estimate of the probability that predicted image $I_g$. The final loss is the sum of both loss with regularization factors $\lambda_G$ and $\lambda_D$: $\mathcal{L} = \lambda_D\mathcal{L}_D + \lambda_G\mathcal{L}_G$.
+- Multi-channel pix2pix-CGAN: propose 4 parallel pix2pix-CGANs with different input and output configurations. CGAN-1 and CGAN-3 learn the short evolution from current frame to its next frame, while CGAN-2 and CGAN-4 study the evolution from t to t + 2. Normalize OF along both axis to [0, 1] by: $F^{norm}_{m, n} = (F_{m, n} - F_{min}) \times \frac{-0.5}{F_{min}}$, for $F_{m, n} \leq 0$ and $F_{m, n} \times \frac{0.5}{F_{max}} + 0.5$ for $F_{m, n} > 0$, where $F_{m, n}$ is the flow value at pixel (m, n), $F_{max}, F_{min}$ are maximum and the minimum value of OF over all videos.
+<h3>2.2 Object-centric anomaly localization model</h3>
+For each abnormal frame, run a fast detector to compute bounding boxes (BB) for each object in the sequence. Each box is considered as a new input and PSNR scores are computed for each one. The BBs yielding minimum values for PSNR scores or values smaller than a threshold refer to the abnormal objects.
+<h2>3. Datasets</h2>
+Avenue, Ped1/2, ShanghaiTech.
+<h2>4. Metrics</h2>
+EER, AUC.

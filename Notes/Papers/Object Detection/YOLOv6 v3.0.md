@@ -1,0 +1,17 @@
+<h2>1. Abstract</h2>
+Refurnish YOLOv6 with numerous novel enhancements on the network architecture and the training scheme. 
+<h2>2. Introduction</h2>
+Renew the neck of the detector with a Bi-directional Concatenation (BiC) module to provide more accurate localization signals. SPPF is simplified to form the SimCSPSPPF block. Propose an anchor-aided training (AAT) strategy to enjoy the advantages of both anchor-based and anchor-free paradigms without touching inference efficiency. Involve a new self-distillation strategy to boost the performance of small models of YOLOv6, in which the heavier branch for DFL is taken as an enhanced auxiliary regression branch during training and is removed at inference.
+<h2>3. Method</h2>
+<h3>3.1 Network design</h3>
+Design an enhanced PAN as detection neck. In order to augment localization signals, propose BiC module to integrate feature maps of three adjacent layers which fuses an extra low-level feature from backbone $C_{i - 1}$ into $P_i$. Moreover, simplify the SPPF block to have a CSP-like version called SimCSPSPPF block. Particularly, revise the SimSPPCSPC block by shrinking the channels of hidden layers and retouching space pyramid pooling. In addition, upgrade the CSPBlock with RepBlock (for small models) or CSPStackRep Block (for large models) and adjust the width and depth. The neck of YOLOv6 is denoted as RepBi-PAN.
+<h3>3.2 Anchor-Aided training</h3>
+Propose AAT in which the anchor-based auxiliary branches are introduced to combine the advantages of anchor-based and anchor-free paradigms. And they are applied both in the classification and regression head. During the training stage, the auxiliary branches and the anchor-free branches learn from independent losses while signals are propagated altogether. Therefore, additional embedded guidance information from auxiliary branches is integrated into the main anchor-free heads. The auxiliary branches is removed at inference which boosts the accuracy performance without decreasing speed.
+<h3>3.3 Self-distillation</h3>
+Apply cosine weight decay to $\alpha$ in overall loss to dynamically adjust the information from hard labels and soft ones from the teacher. The formulation of $\alpha$ is: $\alpha = -0.99 * ((1 - \cos(\pi * E_i/E_{max}))/2) + 1$, where $E_i$ denotes the current training epoch and $E_{max}$ represents the maximum training epochs. Since DFL requires extra params, design the Decoupled Localization Distillation for small models to boost performance without speed degradation. Specifically, append a heavy auxiliary enhanced regression branch to incorporate DFL. During the self-distillation, the student is equipped with a naive regression branch and the enhanced regression branch while the teacher only uses the auxiliary branch. The naive regression branch is only trained with hard labels while the auxiliary is updated according to signals from both teacher and hard labels. After the distillation, the naive regression branch is retained whilst the auxiliary branch is removed.
+<h2>4. Datasets</h2>
+COCO 2017 val.
+<h2>5. Metrics</h2>
+AP$^{val}$, AP$^{val}_{50}$, FPS(bs=1), FPS(bs=32), AP$^s$, AP$^m$, AP$^l$. 
+<h2>6. Code</h2>
+https://github.com/meituan/YOLOv6.

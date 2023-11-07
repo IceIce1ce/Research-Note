@@ -1,0 +1,17 @@
+<h2>1. Abstract</h2>
+Construct CNNs which are capable of solving the OF estimation problem as a supervised learning task. Propose and compare two architectures: a generic architecture and another one including a layer that correlates feature vectors at different image locations. Generate a large synthetic flying chairs dataset.
+<h2>2. Network architectures</h2>
+Given a dataset consisting of image pairs and ground truth flows, train a network to predict the $x-y$ flow fields directly from the images. Pooling results in reduced resolution, so in order to provide dense per-pixel predictions, need to refine the coarse pooled representation. Networks consisting of contracting and expanding parts are trained as a whole using backpropagation.
+<h3>2.1 Contracting part</h3>
+- FlowNetSimple: stack both input images together and feed them through a rather generic network, allowing the network to decide itself how to process the image pair to extract the motion information.
+- FlowNetCorr: create two separate processing streams for two images and combine them at a later stage. The network is constrained to first produce meaningful representations of two images separately and then combine them on a higher level. Introduce a correlation layer that performs multiplicative patch comparisons between two feature maps. Given two multi-channel feature maps $f_1, f_2: \mathbb{R}^2 -> \mathbb{R}^c$, correlation layer lets the network compare each patch from $f_1$ with each path from $f_2$. Consider only a single comparison of two patches. The correlation of two patches centered at $x_1$ in the first map and $x_2$ in the second map is defined: $c(x_1, x_2) = \sigma_{o \in [-k, k] \times [-k, k]}<f_1(x_1 + o), f_2(x_2 + o)>$ for a square patch of size $K := 2k + 1$. Given a maximum displacement $d$, for each location $x_1$, compute correlations $c(x_1, x_2)$ only in a neighborhood of size $D := 2d + 1$ by limiting the range of $x_2$. Use strides of $s_1$ and $s_2$ to quantize $x_1$ globally and to quantize $x_2$ within the neighborhood centered around $x_1$.
+<h3>2.2 Expanding part</h3>
+The main ingredient of the expanding part are ‘upconvolutional’ layers, consisting of unpooling (extending the feature maps, as opposed to pooling) and a convolution. To perform the refinement, apply the ‘upconvolution’ to feature maps, and concatenate it with corresponding feature maps from the ’contractive’ part of the network and an upsampled coarser flow prediction (if available). Each step increases the resolution twice. Repeat this 4 times, resulting in a predicted flow for which the resolution is still 4 times smaller than the input.
+<h3>2.3 Variational refinement</h3>
+Use the variational approach without the matching term: start at the 4 times downsampled resolution and then use the coarse to fine scheme with 20 iterations to bring the flow field to the full resolution. Finally, run 5 more iterations at the full image resolution. Additionally compute image boundaries and respect the detected boundaries by replacing the smoothness coefficient by $\alpha = \exp(-\lambda(x, y)^K)$, where $b(x, y)$ denotes the thin boundary strength resampled at the respective scale and between pixels.
+<h2>3. Datasets</h2>
+Middlebury, KITTI, Sintel, Flying Chairs.
+<h2>4. Metrics</h2>
+Average endpoint erros (in pixels).
+<h2>5. Code</h2>
+https://github.com/ClementPinard/FlowNetPytorch.

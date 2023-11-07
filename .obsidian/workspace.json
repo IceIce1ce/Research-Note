@@ -1,0 +1,199 @@
+{
+  "main": {
+    "id": "2a6d37e10b0114c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "ec0f32924f906ba8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d9b86d456a07e716",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/CUNET.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e461b8676f94ae19",
+    "type": "split",
+    "children": [
+      {
+        "id": "40281c9186f829f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b15b2cb808860556",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "fed0807b6c7b6fcb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3f24a7f3b093d814",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dcb57d68e6f27411",
+    "type": "split",
+    "children": [
+      {
+        "id": "2188cbdcce6cfe4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7a686d9ad67bc3df",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/CUNET.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "cd75f50819ae4e00",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/CUNET.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b343389a30eefcad",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "96b325755abec72b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/CUNET.md"
+              }
+            }
+          },
+          {
+            "id": "63b6cfad56fd2ee8",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "d9b86d456a07e716",
+  "lastOpenFiles": [
+    "Papers/Papers/Anomaly Detection/CUNET.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 968544.crdownload",
+    "Notes/Papers/Anomaly Detection/CUNET.md",
+    "Papers/Papers/Anomaly Detection/WSAL.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 392555.crdownload",
+    "Notes/Papers/Anomaly Detection/WSAL.md",
+    "Notes/Papers/Anomaly Detection/TRN.md",
+    "Papers/Papers/Anomaly Detection/TRN.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 871360.crdownload",
+    "Notes/Papers/Anomaly Detection/GIG.md",
+    "Papers/Papers/Anomaly Detection/GIG.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 377713.crdownload",
+    "Papers/Papers/Anomaly Detection/XD-Violence.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 981937.crdownload",
+    "Notes/Papers/Anomaly Detection/XD-Violence.md",
+    "Papers/Papers/Anomaly Detection/OGNet.pdf",
+    "Notes/Papers/Anomaly Detection/OGNet.md",
+    "Notes/Papers/Anomaly Detection/BAVAD.md",
+    "Notes/Papers/Anomaly Detection/SSMTL++.md",
+    "Notes/Papers/Anomaly Detection/MGFN.md",
+    "Notes/Papers/Anomaly Detection/WAGCN.md",
+    "Notes/Datasets/Anomaly Detection/ShanghaiTech.md",
+    "Notes/Datasets/Anomaly Detection/UCF-Crime.md",
+    "Notes/Papers/Anomaly Detection/CIVAD.md",
+    "Notes/Papers/Anomaly Detection/GCN_VAD.md",
+    "Notes/Papers/Anomaly Detection/BIVAD.md",
+    "Notes/Papers/Anomaly Detection/IVAD.md",
+    "Notes/Papers/Anomaly Detection/OAVAD.md",
+    "Notes/Papers/Anomaly Detection/TEVAD.md",
+    "Notes/Papers/Anomaly Detection/EDAE.md",
+    "Notes/Papers/Anomaly Detection/DAML.md",
+    "Notes/Papers/Anomaly Detection/HF-VAD.md",
+    "Notes/Datasets/Anomaly Detection/MAVAD.md",
+    "Notes/Papers/Object Detection/Gold-YOLO.md",
+    "Notes/Papers/Anomaly Detection/MTLA.md",
+    "Notes/Papers/Anomaly Detection/MTL.md",
+    "Pasted image 20230913170417.png"
+  ]
+}

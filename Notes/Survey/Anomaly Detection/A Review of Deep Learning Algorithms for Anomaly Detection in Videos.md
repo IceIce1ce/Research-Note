@@ -1,0 +1,14 @@
+<h2>1. Abstract</h2>
+This survey focuses on deep learning approaches based on video anomaly detection. Categorize the various deep learning approaches according to their objectives like score based, future frame-based, classification and reconstruction error based approaches. Additionally, it discusses evaluation criteria and commonly used datasets.
+<h2>2. Introduction</h2>
+Generally, the anomaly is classified into point anomaly, collective anomaly and contextual anomaly. In point anomalies, data point far away from usual data. Example skater on a pedestrian road. Contextual-based anomaly is dependent on context. The group of data together leads to an anomaly called a collective anomaly. Example panic event. Anomalies are categorized into short-term motion-only anomalies, appearance-only anomalies, long-term trajectory anomalies and group anomalies. The unusual object that appears in a scene is called an appearance-only anomaly. Short-term motion only anomalies unexpected objects moving in the scene. Where appearance and short-term anomalies are called local anomalies. Long-term trajectory anomalies unexpected object trajectory in the scene. Unexpected object interaction in the scene is called group anomaly.
+<h2>3. Datasets</h2>
+UCSD, UMN, CHUK Avenue, Subway entrance and exit, Shanghai Tech dataset, Street Scene, UCF Crime.
+<h2>4. Deep learning in anomaly detection for videos</h2>
+Reconstruction error, classification, future frame detection and score based.
+<h2>5. Evolution metrics</h2>
+AUC, EER, Track-based detection rate = $\frac{\text{No.of anomalous tracks detected}}{\text{Total no of anomalous tracks}}$, False positive rate = $\frac{\text{No.of false positive regions}}{\text{Total No.of frames}}$ and Region-based detection rate = $\frac{\text{No.of anomalous regions detected}}{\text{Total no of anomalous regions}}$.
+<h2>6. Discussion</h2>
+Research concentrating on end-to-end model creation. Instead of using the separate component for feature extraction and classification use end-to-end fashion to detect anomalies. The main advantage of the end-to-end model easily applicable to a real-life problem. An important issue with video datasets, it is a hard task to annotate and collect the data and that is the reason researchers are not concentrating on creating large data. This problem insisted to go for an unsupervised or weakly supervised approach.
+<h2>7. Conclusion</h2>
+The future scope of research might include robust feature extraction modeling on spatial and temporal, studying the recent publishing paper for large datasets and creating an end-to-end model.

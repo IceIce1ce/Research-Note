@@ -1,0 +1,1 @@
+HDD includes 104 hours egocentric videos of real human driving in San Francisco Bay Area and frame-level annotations of vehicle actions. The videos have a resolution of 1280 $\times$ 720 at 30 FPS. 100 sessions are split for training and 37 sessions for testing.

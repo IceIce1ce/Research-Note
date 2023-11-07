@@ -1,0 +1,20 @@
+<h2>1. Abstract</h2>
+Present a comprehensive review of deep learning-based methods to detect the video anomalies from a new perspective. Specifically, summarise the opportunities and challenges of deep learning models on video anomaly detection tasks. Moreover, summarise the characteristics and technical problems in current deep learning methods for video anomaly detection.
+<h2>2. Introduction</h2>
+<h3>2.1 Challenges</h3>
+Ambiguouness, dependency, sparcity and diversity, privacy, noise.
+<h3>2.2 Relevant surveys</h3>
+Different from previous studies, this survey investigates various applications that video anomaly detection systems could be applied which is not limited to a fixed domain. On the other hand, summarise potential opportunities in different applications and challenges that are still existed, rather than compare the mechanisms behind algorithms as other surveys do.
+<h2>3. Opportunities</h2>
+Intelligent transportation, online education, smart home, public health, digital twins.
+<h2>4. Challenges</h2>
+<h3>4.1 Reconstruction-based models</h3>
+The basic idea of reconstruction model is to reconstruct normal data with low value of reconstruction error in testing phase and make their distribution closer to training data. Correspondingly, the reconstruction error of anomalous data is expected to be higher. Deep AD is the most common used model in reconstruction models. The objective of a DeepAD is: $\mathcal{L} = \sum_{i \in \mathrm{N}}||x_i - \mathrm{D}(\mathrm{E}(x_i))||_2$, where N is the normal training data and D(E($\cdot$)) is the DeepAD framework. Assumption of anomaly with higher value of reconstruction error will not be satisfied if an autoencoder is unable to generalise abnormal data. The anomaly is reconstructed using a generalised model and the generated representation by encoder cannot guarantee its validity. Thus, the model cannot explain why the detected anomaly frame is anomalous.
+<h3>4.2 Predictive models</h3>
+The task of a predictive model is to predict the $t$ frame by giving the past $p$ frames: $x'_t = \mathrm{h}(x_{t - 1},...,x_{t - p})$. The loss function of a predictive model is constructed based on real target frame and its prediction frame: $\mathcal{L} = \sum_{t = 1}^m||x_t - x'_t||^2_2$, where $x_t$ is the real target frame in timestamp $t$ and $x'_t$ is the predicted frame. The predictive model assumes that normal events can be well predicted. Although the predictive models perform well in video anomaly detection tasks, it has higher computational complexity. Therefore, predictive model is more suitable for offline applications.
+<h3>4.3 Generative models</h3>
+It contains an architecture to generate frames based on gaussian distribution such as GAN. The loss function of GAN is: $\mathcal{L} = \frac{1}{m}\sum_{i = 1}^m[\log \mathrm{D}(x_i) + \log(1 - \mathrm{D}(\mathrm{G}(z_i)))]$.
+<h3>4.4 One-class classification models</h3>
+The anomaly detection task with no anomalous labels could be viewed as a one-class classification (OCC) problem. The core idea of this kind of model in video anomaly detection is to find a hypersphere that encloses the network representations of the normal data. Any data points that are not included in this hypersphere will be considered anomalous. The combination of deep learning and OCC models could be trained to learn the dense feature representation with the one-class classification objective jointly. However, this kind of model requires extended training time.
+<h3>4.5 Hybrid models</h3>
+The learned representative features from deep learning methods can be transferred to traditional algorithms like SVM. The low dimensional feature vectors make hybrid models more scalable and computationally efficient, which is suitable for solving video anomaly detection tasks. The loss function of a hybrid model is generic which means the feature extractor has no influence on the feature representation. As a result, the performance of the hybrid model is suboptimal. Moreover, hybrid models are mostly task-dependent and not able to switch between different tasks.

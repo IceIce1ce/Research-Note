@@ -1,0 +1,10 @@
+<h2>1. Abstract</h2>
+Rely only on the information-rich spatio-temporal data, and the reconstruction power of the diffusion models such that a high reconstruction error is utilized to decide the abnormality.
+<h2>2. Method</h2>
+First extract features from a 3D-CNN ($F$) both in training and testing. These features are supplied to the generator, which is a diffusion model. K-diffusion proposes a $\sigma$-dependent skip connection, allowing the network to perform $x_0$ or $\epsilon$-prediction or something in between based on noise magnitude. The denoising network $D_\theta$ is formulated as: $D_\theta(x; \sigma) = c_{skip}(\theta)x + c_{out}(\theta)F_\theta(c_{in}(\sigma)x; c_{noise}(\sigma))$, where $F_\theta$ becomes the effective network to train, $c_{skip}$ modulates the skip connection, $c_{in}(\cdot)$ and $c_{out}(\cdot)$ scale input and output magnitudes and $c_{noise}(\cdot)$ scales $\sigma$ to become suitable as input for $F_\theta$. The reverse process of a DM does not need to start from noise with variance $\sigma^2_{max}$ but it can place at any arbitrary step $t \in (0, T)$, with $\sigma^2_{max} = \sigma^2_0$. Given a real data point $x$, we can sample $x_t \sim \mathcal{N}(x, \sigma_tI)$ and then apply the reverse process to $x_T$. This allows for retaining part of the information of the original data point – the low-frequency component – and removing the high-frequency component. The feature vectors resulting in higher loss refer to anomalous and smaller loss refers to normal while this decision is made through a data-driven threshold $(L_{th})$, defined as $L_{th} = \mu_p + k\sigma_p$, where $k$ is a constant, $\mu_p$ and $\sigma_p$ are mean and standard deviations of MSE loss for each batch.
+<h2>3. Datasets</h2>
+UCF-Crime and ShanghaiTech.
+<h2>4. Metrics</h2>
+AUC.
+<h2>5. Code</h2>
+https://github.com/AnilOsmanTur/video_anomaly_diffusion.

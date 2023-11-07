@@ -1,0 +1,39 @@
+<h2>1. Introduction</h2>
+TAD consists of 4 types of accidents covering several scenes in real life, especially with the highway scene. TAD includes serious traffic incidents caused by rain, vandalism or other factors with a total of 333 videos covering 261 positive ones with traffic accidents. From the perspective of accident types, there are collisions between vehicles, collisions between cars and pedestrians or cyclists who suddenly cross the road, collisions between cars and road obstacles or roadside fences and rollovers caused by emergency braking and other factors. The resolution of the video ranged from (862, 530) to (1432, 990). The dataset has a total of two levels of annotation: video-level classification labels and image-level rectangular annotation boxes. Positive labels used to indicate accident are: collision, wreck, roll over and victims. There are four scenarios of accidents in TAD including junctions, urban roads, village roads and highways together with expressways.
+<h2>2. Summary</h2>
+- < 1M:
+	- Number: 92.
+	- Average time (s): 10.
+	- Average resolution (px): (862, 530).
+- >= 1M && < 5M:
+	- Number: 149.
+	- Average time (s): 20.
+	- Average resolution (px): (1382, 883).
+- >= 5m && < 10M:
+	- Number: 16.
+	- Average time (s): 40.
+	- Average resolution (px): (1490, 923).
+- >= 10M:
+	- Number: 4.
+	- Average time (s): 60.
+	- Average resolution (px): (1432 990).
+- Roll over:
+	- Overturned car.
+	- Overturned truck.
+	- Overturned farm vehicle.
+- Wreck:
+	- Badly damaged car.
+	- Collision between car and pedestrian.
+	- Collision between car and motorcycle.
+- Collision:
+	- Collision between cars.
+	- Collision between trucks.
+	- Collision between car and truck.
+	- Collision between car and farm vehicle.
+- Victims:
+	- Overturned pedestrian.
+	- Overturned motorcycle.
+	- Overturned bicycle.
+- Total duration: 1.2 hours.
+- Average num. frames: 896.
+- Positives/all: 261/333.
