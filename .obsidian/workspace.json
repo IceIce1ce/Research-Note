@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e861a3c38484fd31",
+        "id": "b120adb3564b0070",
         "type": "tabs",
         "children": [
           {
-            "id": "5d31c8f182de5bb6",
+            "id": "78dbee1d6c3fb820",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md"
+              }
             }
           },
           {
@@ -148,23 +156,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5d31c8f182de5bb6",
+  "active": "78dbee1d6c3fb820",
   "lastOpenFiles": [
+    "Papers/Papers/Anomaly Detection/DyAnNet.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 864052.crdownload",
+    "Notes/Papers/Anomaly Detection/DyAnNet.md",
+    "Notes/Papers/Anomaly Detection/DMAD.md",
+    "Papers/Papers/Anomaly Detection/DMAD.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 738021.crdownload",
+    "Notes/Papers/Anomaly Detection/CSLTAL.md",
+    "Papers/Papers/Anomaly Detection/CSLTAL.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 840295.crdownload",
+    "Notes/Papers/Anomaly Detection/SSAGAN.md",
+    "Papers/Papers/Anomaly Detection/SSAGAN.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 127161.crdownload",
     "Notes/Papers/Anomaly Detection/FVAA.md",
     "Papers/Papers/Anomaly Detection/FVAA.pdf",
     "Papers/Papers/Anomaly Detection/Unconfirmed 628284.crdownload",
     "Papers/Papers/Anomaly Detection/WSVAD-MindSpore.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 882117.crdownload",
     "Notes/Papers/Anomaly Detection/WSVAD-MindSpore.md",
     "Notes/Papers/Anomaly Detection/CUNET.md",
-    "Papers/Papers/Anomaly Detection/CUNET.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 968544.crdownload",
-    "Papers/Papers/Anomaly Detection/WSAL.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 392555.crdownload",
     "Notes/Papers/Anomaly Detection/WSAL.md",
     "Notes/Papers/Anomaly Detection/TRN.md",
-    "Papers/Papers/Anomaly Detection/TRN.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 871360.crdownload",
     "Notes/Papers/Anomaly Detection/GIG.md",
     "Notes/Papers/Anomaly Detection/XD-Violence.md",
     "Notes/Papers/Anomaly Detection/OGNet.md",
@@ -181,10 +194,6 @@
     "Notes/Papers/Anomaly Detection/OAVAD.md",
     "Notes/Papers/Anomaly Detection/TEVAD.md",
     "Notes/Papers/Anomaly Detection/EDAE.md",
-    "Notes/Papers/Anomaly Detection/DAML.md",
-    "Notes/Papers/Anomaly Detection/HF-VAD.md",
-    "Notes/Datasets/Anomaly Detection/MAVAD.md",
-    "Notes/Papers/Object Detection/Gold-YOLO.md",
     "Pasted image 20230913170417.png"
   ]
 }
