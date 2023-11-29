@@ -1,0 +1,17 @@
+<h2>1. Abstract</h2>
+First, propose to employ a U-Net like structure to model both types of dependencies in a unified structure where the encoder learns global dependencies hierarchically on top of local ones; then the decoder propagates this global information back to the segment level for classification. Second, propose weakly supervised contrastive regularization which adopts a feature-based approach to regularize the network. Contrastive regularization learns more generalizable features by enforcing inter-class separability and intra-class compactness.
+<h2>2. The proposed method</h2>
+<h3>2.1 Contrastive-regularized u-net</h3>
+The segment-level input features are first processed by the U-Net feature extractor to capture local and global temporal dependencies between segments in video. The U-Net features are then passed to the anomaly classification block which generates the segment-level anomalous scores $s_i \in \mathbb{R}^T$ indicating if each segment is normal/anomalous. The block also outputs segment-level features $F_i \in \mathbb{R}^{T \times D_f}$ which are used to regularize the network. U-Net based classifier is used to generate pseudo-labels. For positive videos, the top-k segments with the highest anomalous scores are selected as pseudo-positive samples and the bottom-k segments as pseudo-negative samples. The features and scores of the selected pseudo-positive and pseudo-negative segments are denoted as $\{(\hat{F}^+_i, \hat{s}^+_i), (\hat{F}^-_i, \hat{s}^-_i)\}$, For negative videos, only top-k segments ($\hat{F}^-_i, \hat{s}^-_i)$ are selected and they represent hard negative normal segments that the network has more difficulty fitting. The anomaly scores $\hat{s}$ are used to compute data loss and train the model Meanwhile, the generated features $\hat{F} = \{\hat{F}^+_i, \hat{F}^-_i\}$ are used to perform contrastive regularization to reduce overfitting.
+<h3>2.2 Modeling local and global temporal dependencies with u-net</h3>
+Employ U-Net to capture both types of dependencies in a unified manner. The height of network is fixed to $L = 4$ where temporal resolution $T^{(l)} = \frac{T}{2^{l - 1}}, l = \{1...L\}$ is halved from one height level to another. The block contains 3 1-D convolutional layers activated by the ReLU function and has a skip connection to facilitate training.
+<h3>2.3 Segment-level anomaly classification</h3>
+The block is a 3=layered MLP network. ReLU activation is used for first and second layers and sigmoid activation for last layer. In addition, features from second layer $F_i \in \mathbb{R}^{T \times D_f}$ are extracted and subjected to contrastive regularization to reduce overfitting.
+<h3>2.4 Constrative regularization with pseudo-labels</h3>
+Define $C$ centers for each class to model different types of normal and anomaly events.
+<h3>2.5 Loss function</h3>
+The training loss function is defined: $L(\hat{F}, \hat{S}, H) = L(\hat{S}) + R_{contrast}(\hat{F}, H) + \gamma\sum_{\hat{s}_i \in \hat{S}}\sum_{t = 1}^T(\hat{S}_i(t) - \hat{s}_i(t - 1))^2 + \eta\sum_{\hat{s}_i \in \hat{S}}\sum_{t = 1}^T\hat{S}_i(t)$, where $L(\hat{S})$ is BCE loss, third term is temporal smoothness constraint and last term is sparsity constraint.
+<h2>3. Datasets</h2>
+UCF-Crime.
+<h2>4. Metrics</h2>
+AUC.

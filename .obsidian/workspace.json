@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b120adb3564b0070",
+        "id": "5bbb3edf7502706f",
         "type": "tabs",
         "children": [
           {
-            "id": "78dbee1d6c3fb820",
+            "id": "a20ebbcb84e399b1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Notes/Papers/Anomaly Detection/DyAnNet.md"
-              }
+              "state": {}
             }
           },
           {
@@ -156,44 +148,43 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "78dbee1d6c3fb820",
+  "active": "a20ebbcb84e399b1",
   "lastOpenFiles": [
-    "Papers/Papers/Anomaly Detection/DyAnNet.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 864052.crdownload",
+    "Papers/Papers/Anomaly Detection/MCR.pdf",
+    "Notes/Papers/Anomaly Detection/MCR.md",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 497245.crdownload",
+    "Papers/Papers/Anomaly Detection/XEL.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 291894.crdownload",
+    "Notes/Papers/Anomaly Detection/XEL.md",
+    "Notes/Papers/Anomaly Detection/AnomalyCLIP.md",
+    "Papers/Papers/Anomaly Detection/AnomalyCLIP.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 97624.crdownload",
+    "Notes/Papers/Anomaly Detection/Light-WSVAD.md",
+    "Papers/Papers/Anomaly Detection/Light-WSVAD.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 941937.crdownload",
+    "Papers/Papers/Anomaly Detection/CRFs.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 782178.crdownload",
+    "Notes/Papers/Anomaly Detection/CRFs.md",
+    "Notes/Papers/Anomaly Detection/WSSTAD.md",
+    "Notes/Survey/Anomaly Detection/MAFVAD.md",
+    "Notes/Survey/Anomaly Detection/CR-U-Net.md",
+    "Notes/Survey/Anomaly Detection/BN-SVP.md",
+    "Notes/Survey/Anomaly Detection/SSPCAB.md",
+    "Notes/Survey/Anomaly Detection/Multimedia Datasets for Anomaly Detection, A Review.md",
+    "Notes/Survey/Anomaly Detection/Vision-Based Traffic Accident Detection and Anticipation, A Survey.md",
+    "Notes/Datasets/Anomaly Detection/XD-Violence.md",
+    "Notes/Datasets/Anomaly Detection/Street Scene.md",
+    "Notes/Papers/Anomaly Detection/CAFE.md",
+    "Notes/Papers/Anomaly Detection/W-TALC.md",
+    "Notes/Survey/Anomaly Detection/A comparison of outlier detection algorithms for ITS data.md",
+    "Notes/Survey/Anomaly Detection/Survey on video anomaly detection in dynamic scenes with moving cameras.md",
+    "Notes/Papers/Anomaly Detection/HyperVD.md",
     "Notes/Papers/Anomaly Detection/DyAnNet.md",
     "Notes/Papers/Anomaly Detection/DMAD.md",
-    "Papers/Papers/Anomaly Detection/DMAD.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 738021.crdownload",
     "Notes/Papers/Anomaly Detection/CSLTAL.md",
-    "Papers/Papers/Anomaly Detection/CSLTAL.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 840295.crdownload",
     "Notes/Papers/Anomaly Detection/SSAGAN.md",
-    "Papers/Papers/Anomaly Detection/SSAGAN.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 127161.crdownload",
     "Notes/Papers/Anomaly Detection/FVAA.md",
-    "Papers/Papers/Anomaly Detection/FVAA.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 628284.crdownload",
-    "Papers/Papers/Anomaly Detection/WSVAD-MindSpore.pdf",
     "Notes/Papers/Anomaly Detection/WSVAD-MindSpore.md",
-    "Notes/Papers/Anomaly Detection/CUNET.md",
-    "Notes/Papers/Anomaly Detection/WSAL.md",
-    "Notes/Papers/Anomaly Detection/TRN.md",
-    "Notes/Papers/Anomaly Detection/GIG.md",
-    "Notes/Papers/Anomaly Detection/XD-Violence.md",
-    "Notes/Papers/Anomaly Detection/OGNet.md",
-    "Notes/Papers/Anomaly Detection/BAVAD.md",
-    "Notes/Papers/Anomaly Detection/SSMTL++.md",
-    "Notes/Papers/Anomaly Detection/MGFN.md",
-    "Notes/Papers/Anomaly Detection/WAGCN.md",
-    "Notes/Datasets/Anomaly Detection/ShanghaiTech.md",
-    "Notes/Datasets/Anomaly Detection/UCF-Crime.md",
-    "Notes/Papers/Anomaly Detection/CIVAD.md",
-    "Notes/Papers/Anomaly Detection/GCN_VAD.md",
-    "Notes/Papers/Anomaly Detection/BIVAD.md",
-    "Notes/Papers/Anomaly Detection/IVAD.md",
-    "Notes/Papers/Anomaly Detection/OAVAD.md",
-    "Notes/Papers/Anomaly Detection/TEVAD.md",
-    "Notes/Papers/Anomaly Detection/EDAE.md",
     "Pasted image 20230913170417.png"
   ]
 }

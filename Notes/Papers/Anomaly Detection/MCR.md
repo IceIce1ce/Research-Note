@@ -1,0 +1,13 @@
+<h2>1. Abstract</h2>
+MCR utilizes the property of multi-scale continuity to refine anomaly scores by introducing differential contextual information of instances. At the same time, multi-scale attention is designed to produce a video-level weights in order to select the proper scale and fuse all scores at different scales.
+<h2>2. Methodology</h2>
+<h3>2.1 Multi-scale continuity</h3>
+The pooling operator is used to perform multi-scale moving average operator on the $j$-th clips to obtain a new smoothed score $\overline{s}_{i, j}^{(w)} = \frac{1}{W}\sum_{n = 1}^w\overline{s}_{i, j + n - 1}$, where $w$ is the window size of moving average. A candidate group of score vectors are generated using different window sizes, while the most suitable ones will be picked in the next section. Such set of smoothed scores with $N$ different scales ($w_1,...,w_n,...,w_N$) are defined as $\overline{S}_i = \{\overline{s}_{i, j}^{(w_1)},...,\overline{s}^{(w_N)}_{i, j}$.
+<h3>2.2 Multi-scale attention</h3>
+Adaptive squeeze step is adopted to merge the features of consecutive clips. After that, the feature $\hat{F}_i \in \mathbb{R}^{k_i \times D}$ can be transferred to $\overline{F})_i \in \mathbb{R}^{K \times D}$, where $K$ = 32. Another FC layer accepts $\overline{F}_i$ as input, followed by a SoftMax layer as the activate function. Then, weighting factors vector $P_i$ can be formalized as: $P_i = \{p^{(n)}_i\}^N_{n = 1} = \frac{e^{w_2\hat{F}_i + b_2}}{\sum_je^{w_2\hat{F}_j + b_2}}$, where $p_i \in [0, 1], W_2 \in \mathbb{R}^{D \times N}, b_2 \in \mathbb{R}^{1 \times N}$, $N$ = 3 indicates number of weights factors which is same as number of scales. By multiplying the smoothed multi-scale anomaly scores $\overline{S}_i$ with weight $P_i$, final anomaly score $s_{i, j}$ of $j$-th clip in $i$-th video could be represented as: $s_{i, j} = \frac{1}{N}\sum_{n = 1}^Np^{(n)}_i \times \overline{s}^{(w_n)}_{i, j}$, where $p^{(n)}_i$ is $n$-th constant number in weighting factors $P_i, \overline{s}^{(w_n)}_{i, j}$ is score vector of $n$-th scale in list of score $\overline{S}_i$.
+<h3>2.3 Optimization</h3>
+$L_{DMIL} = \frac{1}{k_i}\sum_{s_{i, j} \in S_i}[-y_ilog(s_{i, j}) + (1 - y_i)log(1 - s_{i, j})]$, $L_c = \frac{1}{k_i}\sum_{j = 1}^{k_i}||s_{i, j} - c_i||$ if $y_i$ = 0, 0 otherwise. $c_i = \frac{1}{k_i}\sum_{j = 1}^{k_i}s_{i, j}$, where $c_i$ is center of anomaly score vector $s_i$ of $j-th$. The total loss: $L = L_{DMIL} + \lambda L_c$.
+<h2>3. Datasets</h2>
+UCF-Crime and ShanghaiTech.
+<h2>4. Metrics</h2>
+AUC.
