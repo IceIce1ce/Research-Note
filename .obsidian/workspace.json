@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5bbb3edf7502706f",
+        "id": "b995ce082f9819ad",
         "type": "tabs",
         "children": [
           {
-            "id": "a20ebbcb84e399b1",
+            "id": "2e7d7c160625c382",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -148,8 +148,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a20ebbcb84e399b1",
+  "active": "b15b2cb808860556",
   "lastOpenFiles": [
+    "Notes/Datasets/Anomaly Detection/XD-Violence.md",
+    "Notes/Datasets/Anomaly Detection/UCF-Crime.md",
+    "Notes/Datasets/Anomaly Detection/ShanghaiTech.md",
+    "Notes/Papers/Anomaly Detection/URDMU.md",
+    "Papers/Papers/Anomaly Detection/URDMU.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 508869.crdownload",
+    "Notes/Papers/Anomaly Detection/MSFF.md",
+    "Papers/Papers/Anomaly Detection/MSFF.pdf",
+    "Papers/Papers/Anomaly Detection/Unconfirmed 283170.crdownload",
     "Papers/Papers/Anomaly Detection/MCR.pdf",
     "Notes/Papers/Anomaly Detection/MCR.md",
     "Papers/Papers/Anomaly Detection/Unconfirmed 497245.crdownload",
@@ -160,10 +169,6 @@
     "Papers/Papers/Anomaly Detection/AnomalyCLIP.pdf",
     "Papers/Papers/Anomaly Detection/Unconfirmed 97624.crdownload",
     "Notes/Papers/Anomaly Detection/Light-WSVAD.md",
-    "Papers/Papers/Anomaly Detection/Light-WSVAD.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 941937.crdownload",
-    "Papers/Papers/Anomaly Detection/CRFs.pdf",
-    "Papers/Papers/Anomaly Detection/Unconfirmed 782178.crdownload",
     "Notes/Papers/Anomaly Detection/CRFs.md",
     "Notes/Papers/Anomaly Detection/WSSTAD.md",
     "Notes/Survey/Anomaly Detection/MAFVAD.md",
@@ -172,7 +177,6 @@
     "Notes/Survey/Anomaly Detection/SSPCAB.md",
     "Notes/Survey/Anomaly Detection/Multimedia Datasets for Anomaly Detection, A Review.md",
     "Notes/Survey/Anomaly Detection/Vision-Based Traffic Accident Detection and Anticipation, A Survey.md",
-    "Notes/Datasets/Anomaly Detection/XD-Violence.md",
     "Notes/Datasets/Anomaly Detection/Street Scene.md",
     "Notes/Papers/Anomaly Detection/CAFE.md",
     "Notes/Papers/Anomaly Detection/W-TALC.md",
@@ -182,9 +186,6 @@
     "Notes/Papers/Anomaly Detection/DyAnNet.md",
     "Notes/Papers/Anomaly Detection/DMAD.md",
     "Notes/Papers/Anomaly Detection/CSLTAL.md",
-    "Notes/Papers/Anomaly Detection/SSAGAN.md",
-    "Notes/Papers/Anomaly Detection/FVAA.md",
-    "Notes/Papers/Anomaly Detection/WSVAD-MindSpore.md",
     "Pasted image 20230913170417.png"
   ]
 }
